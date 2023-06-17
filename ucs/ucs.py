@@ -29,14 +29,15 @@ class UniformCostSearch:
                     elif frontier.states[adj] > cost+state_graph[curr][adj]:
                         prev[adj]=curr
                         frontier.replace(adj,cost+state_graph[curr][adj])
+    
     def ucscustom(self,start, goal_array, state_graph):
         frontier = CustomProrityQueue(start)
         visited = set()
         prev = {start:None}
-        path = [] # initialize an empty list to store the final path
-        total_cost = 0 # initialize a variable to store the total cost
+        path = [] 
+        total_cost = 0 
     
-        while frontier.q and goal_array: # loop until the frontier is empty or all goals are reached
+        while frontier.q and goal_array:
             cost, curr = frontier.pop()
             if curr in goal_array: # check if the current city is in the goal array
                 goal_array.remove(curr) # remove it from the goal array
