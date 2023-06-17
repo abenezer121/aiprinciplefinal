@@ -39,23 +39,22 @@ class UniformCostSearch:
     
         while frontier.q and goal_array:
             cost, curr = frontier.pop()
-            if curr in goal_array: # check if the current city is in the goal array
-                goal_array.remove(curr) # remove it from the goal array
-                # p = path(prev, curr)
+            if curr in goal_array: 
+                goal_array.remove(curr) 
                 p = []
                 while curr is not None:
                         p.append(curr)
                         curr = prev[curr]
                 p.reverse()
 
-                total_cost += cost # update the total cost with the cost to reach the current goal city
-                path.extend(p[1:]) # extend the final path with the partial path to the current goal city (excluding the start city)
-                start = p[-1] # update the start city to be the current goal city
-                frontier = CustomProrityQueue(start) # reinitialize the frontier with the new start city
-                visited = set() # reset the visited set
-                prev = {start:None} # reset the prev dictionary
+                total_cost += cost 
+                path.extend(p[1:]) 
+                start = p[-1] 
+                frontier = CustomProrityQueue(start) 
+                visited = set()
+                prev = {start:None} 
         
-            else: # if the current city is not a goal city, continue the search as usual
+            else: 
                 visited.add(curr)
         
                 for adj in state_graph[curr]:
@@ -67,7 +66,7 @@ class UniformCostSearch:
                             prev[adj]=curr
                             frontier.replace(adj,cost+state_graph[curr][adj])
         
-        return path, total_cost # return the final path and cost to reach all the goal cities
+        return path, total_cost 
 
 
 
